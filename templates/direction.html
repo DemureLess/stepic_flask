@@ -2,15 +2,15 @@
 
 {% block content %}
 
-    {% set count = tours|length %}
-
-   	{#  set min_price = tours.values|min(attribute="price")  #}
-    {%  set min_price = tours.value|min(attribute="price")  %}
-    {{ min_price }}
+    {# set count = tours|length #}
+    {#  set min_price = tours.values()|min(attribute="price") #}
+    {# set max_price = tours2|max(attribute="price")  #}
+    {# set min_nights = tours2|min(attribute="nights") #}
+    {# set max_nights = tours2|max(attribute="nights") #}
 
 
     <h1 class="display-5 mt-4">Летим  {{ tours.depart_rus }} </h1>
-    <p class="mb-4">Найдено {{ count }} туров, от {{ min_price }} до {{ max_price }} и от {{ min_nights }} ночей до {{ max_nights }} ночей</p>
+    <p class="mb-4">Найдено {{ meta.count }} туров, от {{ meta.min_price }} до {{ meta.max_price }} и от {{ meta.min_nights }} ночей до {{ meta.max_nights }} ночей</p>
     <!-- HERO -->
 
 

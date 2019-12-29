@@ -20,20 +20,36 @@ def main():
 @app.route('/from/<direction>')
 def from_direction(direction):
 
-    depart_city = {}
-    depart_meta = []
-    nights = []
+    depart_meta = {} # Результирующий словарь с метаданными
+    depart_tour = {} # Отфильтрованный список туров
+    depart_price = [] # Для сортировки  цены
+    depart_nights = [] # для сортировки ночей
 
     for x in tours.keys():
         if tours[x]["departure"] == direction:
-            depart_city[x] = tours[x]
-            depart_meta.append(tours[x]['price'])
-            nights.append(tours[x]['nights'])
-    print(tours)
+            depart_tour[x] = tours[x]
+            depart_price.append(tours[x]['price'])
+            depart_nights.append(tours[x]['nights'])
 
-    #print(depart_city)
+    depart_meta['depart_rus'] = departures.get(direction)
+    depart_meta['direction'] = direction
 
-    return render_template('direction.html', departures=departures, tours=depart_city)
+    depart_meta['count'] = len(depart_tour)
+
+
+    depart_price.sort()   # Минимум . максимум цены
+    depart_meta['max_price'] = depart_price[-1]
+    depart_meta['min_price'] = depart_price[0]
+
+    depart_nights.sort()  # Минимум . максимум ночей
+    depart_meta['max_nights'] = depart_nights[-1]
+    depart_meta['min_nights'] = depart_nights[0]
+
+
+
+    print(depart_meta)
+
+    return render_template('direction.html', departures=departures, tours=depart_tour, meta=depart_meta)
 
 
 @app.route('/tours/<id>')
