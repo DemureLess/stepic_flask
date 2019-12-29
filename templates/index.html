@@ -19,7 +19,7 @@
                     <img src="{{ tour.picture }}" class="card-img-top img-fluid">
                      <div class="card-body">
                         <h5 class="card-title">{{ tour.title }}</h5>
-                         <p class="card-text">{{ tour.description }}</p>
+                         <p class="card-text">{{ tour.description|truncate(200) }}</p>
                          <a href="/tours/{{ url }}" class="btn btn-sm btn-primary">Подробнее</a>
                     </div>
                 </div>

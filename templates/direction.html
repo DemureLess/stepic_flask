@@ -9,7 +9,7 @@
     {# set max_nights = tours2|max(attribute="nights") #}
 
 
-    <h1 class="display-5 mt-4">Летим  {{ tours.depart_rus }} </h1>
+    <h1 class="display-5 mt-4">Летим  {{ meta.depart_rus }} </h1>
     <p class="mb-4">Найдено {{ meta.count }} туров, от {{ meta.min_price }} до {{ meta.max_price }} и от {{ meta.min_nights }} ночей до {{ meta.max_nights }} ночей</p>
     <!-- HERO -->
 
@@ -22,7 +22,7 @@
                     <img src="{{ tour.picture }}" class="card-img-top img-fluid">
                      <div class="card-body">
                         <h5 class="card-title">{{ tour.title }}</h5>
-                         <p class="card-text">{{ tour.description }}</p>
+                         <p class="card-text">{{ tour.description|truncate(200) }}</p>
                          <a href="/tours/{{ url }}" class="btn btn-sm btn-primary">Подробнее</a>
                     </div>
                 </div>

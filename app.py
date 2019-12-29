@@ -20,10 +20,10 @@ def main():
 @app.route('/from/<direction>')
 def from_direction(direction):
 
-    depart_meta = {} # Результирующий словарь с метаданными
-    depart_tour = {} # Отфильтрованный список туров
-    depart_price = [] # Для сортировки  цены
-    depart_nights = [] # для сортировки ночей
+    depart_meta = {}  # Результирующий словарь с метаданными
+    depart_tour = {}   # Отфильтрованный список туров
+    depart_price = []  # Для сортировки  цены
+    depart_nights = []  # для сортировки ночей
 
     for x in tours.keys():
         if tours[x]["departure"] == direction:
@@ -37,15 +37,13 @@ def from_direction(direction):
     depart_meta['count'] = len(depart_tour)
 
 
-    depart_price.sort()   # Минимум . максимум цены
+    depart_price.sort()  # Минимум . максимум цены
     depart_meta['max_price'] = depart_price[-1]
     depart_meta['min_price'] = depart_price[0]
 
     depart_nights.sort()  # Минимум . максимум ночей
     depart_meta['max_nights'] = depart_nights[-1]
     depart_meta['min_nights'] = depart_nights[0]
-
-
 
     print(depart_meta)
 
@@ -54,17 +52,19 @@ def from_direction(direction):
 
 @app.route('/tours/<id>')
 def toursid(id):
-
+    depart_meta = {}
     tour = tours.get(id)
     depart = tour.get('departure')
-    tour['depart_rus'] = departures.get(depart)
+    depart_meta['depart_rus'] = departures.get(depart)
+    depart_meta['direction'] = depart
 
-    print(tour)
+    print(depart)
+    print(depart_meta)
 
-    if not tour:
+    if tour == None:
         abort(404)
     else:
-        return render_template('tour.html', tours=tour, departures=departures)
+        return render_template('tour.html', tours=tour, departures=departures, meta=depart_meta)
 
 
 if __name__ == '__main__':
