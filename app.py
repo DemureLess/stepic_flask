@@ -40,7 +40,7 @@ def from_direction(direction):
 def tours_id(id):
     tour = tours.get(id)
     if tour:
-        return render_template('tour.html', tours=tour)
+        return render_template('tour.html', tour=tour)
     else:
         return page_not_found(404)
 
