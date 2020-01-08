@@ -24,7 +24,7 @@ def inject_departures():
 
 @app.route('/')
 def main():
-    return render_template('index.html', promo=promo, tours=tours.values())
+    return render_template('index.html', promo=promo, tours=list(tours.values())[:6])
 
 
 @app.route('/from/<direction>')
