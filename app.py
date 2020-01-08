@@ -37,7 +37,7 @@ def from_direction(direction):
 
 
 @app.route('/tours/<id>')
-def toursid(id):
+def tours_id(id):
     tour = tours.get(id)
     if tour:
         return render_template('tour.html', tours=tour)
