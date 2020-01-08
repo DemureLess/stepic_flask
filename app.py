@@ -29,18 +29,18 @@ def main():
 
 @app.route('/from/<direction>')
 def from_direction(direction):
-    depart_tour = {}  # Отфильтрованный список туров
+    departure_tours = {}  # Отфильтрованный словарь туров
     for tour_id in tours.keys():
         if tours[tour_id]["departure"] == direction:
             depart_tour[tour_id] = tours[tour_id]
-    return render_template('direction.html', tours=depart_tour.values(), direction=direction)
+    return render_template('direction.html', tours=departure_tours.values(), direction=direction)
 
 
 @app.route('/tours/<id>')
 def tours_id(id):
     tour = tours.get(id)
     if tour:
-        return render_template('tour.html', tours=tour)
+        return render_template('tour.html', tour=tour)
     else:
         return page_not_found(404)
 
