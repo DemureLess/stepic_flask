@@ -13,18 +13,16 @@
 
     <div class="row mt-5">
         {% for tour in tours %}
-            {% if loop.index < 7 %}
-                <div class="col-4">
-                    <div class="card mb-3">
-                        <img src="{{ tour.picture }}" class="card-img-top img-fluid" height="200">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ tour.title }}</h5>
-                            <p class="card-text">{{ tour.description|truncate(200) }}</p>
-                            <a href="/tours/{{ tour.url }}" class="btn btn-sm btn-primary">Подробнее</a>
-                        </div>
+            <div class="col-4">
+                <div class="card mb-3">
+                    <img src="{{ tour.picture }}" class="card-img-top img-fluid" height="200">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ tour.title }}</h5>
+                        <p class="card-text">{{ tour.description|truncate(200) }}</p>
+                        <a href="/tours/{{ tour.url }}" class="btn btn-sm btn-primary">Подробнее</a>
                     </div>
                 </div>
-            {% endif %}
+            </div>
         {% endfor %}
     </div>
 
